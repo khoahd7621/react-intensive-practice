@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import { MiniNav, Navbar } from "@/components/commons";
+import { Footer, MiniNav, Navbar } from "@/components/commons";
 
 const StoreLayout = () => {
   return (
@@ -12,6 +12,7 @@ const StoreLayout = () => {
       <Outlet />
       {/* <!-- END content --> */}
 
+      <Footer />
       {/* <!-- END footer --> */}
     </div>
   );
