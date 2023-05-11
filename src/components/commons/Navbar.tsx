@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import AppRoutes from "@/routes/AppRoutes";
+
 export default function Navbar() {
   return (
     <nav
@@ -9,7 +11,7 @@ export default function Navbar() {
       <div className="container">
         <Link
           className="navbar-brand"
-          to=""
+          to={AppRoutes.home}
         >
           Vegefoods
         </Link>
@@ -32,7 +34,7 @@ export default function Navbar() {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               <Link
-                to=""
+                to={AppRoutes.home}
                 className="nav-link"
               >
                 Home
@@ -41,14 +43,14 @@ export default function Navbar() {
             <li className="nav-item">
               <Link
                 className="nav-link"
-                to="shop"
+                to={AppRoutes.shop}
               >
                 Shop
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                to="about"
+                to={AppRoutes.about}
                 className="nav-link"
               >
                 About
@@ -56,7 +58,7 @@ export default function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to="blog"
+                to={AppRoutes.blog}
                 className="nav-link"
               >
                 Blog
@@ -64,7 +66,7 @@ export default function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to="contact"
+                to={AppRoutes.contact}
                 className="nav-link"
               >
                 Contact
@@ -72,7 +74,7 @@ export default function Navbar() {
             </li>
             <li className="nav-item cta cta-colored">
               <Link
-                to="cart"
+                to={AppRoutes.cart}
                 className="nav-link"
               >
                 <span className="bi bi-cart4"></span>[0]
