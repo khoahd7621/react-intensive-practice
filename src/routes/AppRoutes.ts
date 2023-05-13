@@ -6,6 +6,9 @@ const AppRoutes = {
   cart: "/cart",
   checkout: "/checkout",
   contact: "/contact",
+  signin: "/signin",
+  signup: "/signup",
+  profile: "/profile",
 };
 
 export default AppRoutes;
