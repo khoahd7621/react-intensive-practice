@@ -1,72 +1,40 @@
-import { Link, Navigate, useParams } from "react-router-dom";
-
 import { listProducts } from "@/datas/ListProducts";
 import { Product } from "@/models/Product";
-import AppRoutes from "@/routes/AppRoutes";
 import { ProductCard } from "../commons";
 
-import bgImage1 from "@/assets/images/bg_1.jpg";
+type ProductDetailsProps = {
+  product: Product;
+};
 
-export default function ProductDetailsPage() {
-  // Get the userId param from the URL.
-  const { slug } = useParams();
-
-  const product: Product | undefined = listProducts.find((product) => product.slug === slug);
-
-  if (product === undefined) {
-    return <Navigate to={AppRoutes.shop} />;
-  }
-
+export default function ProductDetails({ product }: ProductDetailsProps) {
   return (
     <>
-      <div
-        className="hero-wrap hero-bread"
-        style={{ backgroundImage: `url("${bgImage1}")` }}
-      >
-        <div className="container">
-          <div className="row no-gutters slider-text align-items-center justify-content-center">
-            <div className="col-md-9 ftco-animate text-center">
-              <p className="breadcrumbs">
-                <span className="mr-2">
-                  <Link to={AppRoutes.home}>Home</Link>
-                </span>{" "}
-                <span className="mr-2">
-                  <Link to={AppRoutes.shop}>Shop</Link>
-                </span>{" "}
-                <span>{product?.name}</span>
-              </p>
-              <h1 className="mb-0 bread">{product?.name}</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <section className="ftco-section">
         <div className="container">
           <div className="row">
             <div className="col-lg-6 mb-5">
               <a
-                href={product?.image}
+                href={product.image}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="image-popup"
               >
                 <img
-                  src={product?.image}
+                  src={product.image}
                   className="img-fluid"
                   alt="Colorlib Template"
                 />
               </a>
             </div>
             <div className="col-lg-6 product-details pl-md-5 ftco-animate">
-              <h3>{product?.name}</h3>
+              <h3>{product.name}</h3>
               <div className="rating d-flex">
                 <p className="text-left mr-4">
                   <a
                     href="#"
                     className="mr-2"
                   >
-                    {product?.ratingStar}
+                    {product.ratingStar}
                   </a>
                   <a href="#">
                     <span className="bi bi-star"></span>
@@ -90,7 +58,7 @@ export default function ProductDetailsPage() {
                     className="mr-2"
                     style={{ color: "#000" }}
                   >
-                    {product?.ratingCount} <span style={{ color: "#bbb" }}>Rating</span>
+                    {product.ratingCount} <span style={{ color: "#bbb" }}>Rating</span>
                   </a>
                 </p>
                 <p className="text-left">
@@ -99,7 +67,7 @@ export default function ProductDetailsPage() {
                     className="mr-2"
                     style={{ color: "#000" }}
                   >
-                    {product?.soldCount} <span style={{ color: "#bbb" }}>Sold</span>
+                    {product.soldCount} <span style={{ color: "#bbb" }}>Sold</span>
                   </a>
                 </p>
               </div>
@@ -118,7 +86,7 @@ export default function ProductDetailsPage() {
                   <span>${product.price}</span>
                 )}
               </p>
-              <p>{product?.description}</p>
+              <p>{product.description}</p>
               <div className="row mt-4">
                 <div className="col-md-6">
                   <div className="form-group d-flex">
@@ -173,7 +141,7 @@ export default function ProductDetailsPage() {
                 </div>
                 <div className="w-100"></div>
                 <div className="col-md-12">
-                  <p style={{ color: "#000" }}>{product?.inStockCount} kg available</p>
+                  <p style={{ color: "#000" }}>{product.inStockCount} kg available</p>
                 </div>
               </div>
               <p>
