@@ -1,3 +1,4 @@
-import ProductsPage from "./ProductsPage";
+import Products from "./Products";
+import ProductDetails from "./ProductDetail";
 
-export { ProductsPage };
+export { Products, ProductDetails };

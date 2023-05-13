@@ -1,8 +1,8 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 
-import { ProductsPage } from "@/components/shop";
+import ProductDetailsPage from "@/components/shop/ProductDetail";
 import { StoreLayout } from "@/layouts";
-import HomePage from "@/pages";
+import { HomePage, ShopPage } from "@/pages";
 import AppRoutes from "./AppRoutes";
 
 const routes: RouteObject[] = [
@@ -16,7 +16,11 @@ const routes: RouteObject[] = [
       },
       {
         path: AppRoutes.shop,
-        element: <ProductsPage />,
+        element: <ShopPage />,
+      },
+      {
+        path: `${AppRoutes.shop}/:slug`,
+        element: <ProductDetailsPage />,
       },
     ],
   },

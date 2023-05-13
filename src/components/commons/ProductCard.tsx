@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
+
 import { Product } from "@/models/Product";
 import AppRoutes from "@/routes/AppRoutes";
-import { Link } from "react-router-dom";
 
 type ProductProps = {
   product: Product;
@@ -42,14 +43,14 @@ export default function ProductCard({ product }: ProductProps) {
           </div>
           <div className="bottom-area d-flex px-3">
             <div className="m-auto d-flex">
-              <a
-                href="#"
+              <Link
+                to={`${AppRoutes.shop}/${product.slug}`}
                 className="add-to-cart d-flex justify-content-center align-items-center text-center"
               >
                 <span>
                   <i className="bi bi-list"></i>
                 </span>
-              </a>
+              </Link>
               <a
                 href="#"
                 className="buy-now d-flex justify-content-center align-items-center mx-1"

@@ -1,3 +1,5 @@
 import HomePage from "./HomePage";
+import ShopPage from "./ShopPage";
+import ProductDetailPage from "./ProductDetailPage";
 
-export default HomePage;
+export { HomePage, ShopPage, ProductDetailPage };

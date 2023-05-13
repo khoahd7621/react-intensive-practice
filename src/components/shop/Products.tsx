@@ -6,7 +6,7 @@ import { ProductCard } from "../commons";
 
 import bgImage1 from "@/assets/images/bg_1.jpg";
 
-export default function ProductsPage() {
+export default function Products() {
   return (
     <>
       <div
