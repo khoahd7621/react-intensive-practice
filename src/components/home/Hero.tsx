@@ -1,3 +1,7 @@
+import { Link } from "react-router-dom";
+
+import AppRoutes from "@/routes/AppRoutes";
+
 import bg1 from "@/assets/images/bg_1.jpg";
 import bg2 from "@/assets/images/bg_2.jpg";
 import bg3 from "@/assets/images/bg_3.jpg";
@@ -19,12 +23,12 @@ export default function Hero() {
             <h1 className="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
             <h2 className="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
             <p>
-              <a
-                href="#"
+              <Link
+                to={AppRoutes.shop}
                 className="btn btn-primary"
               >
                 View Details
-              </a>
+              </Link>
             </p>
           </div>
         </div>
@@ -37,12 +41,12 @@ export default function Hero() {
             <h1 className="mb-2">100% Fresh &amp; Organic Foods</h1>
             <h2 className="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
             <p>
-              <a
-                href="#"
+              <Link
+                to={AppRoutes.shop}
                 className="btn btn-primary"
               >
                 View Details
-              </a>
+              </Link>
             </p>
           </div>
         </div>
@@ -55,12 +59,12 @@ export default function Hero() {
             <h1 className="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
             <h2 className="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
             <p>
-              <a
-                href="#"
+              <Link
+                to={AppRoutes.shop}
                 className="btn btn-primary"
               >
                 View Details
-              </a>
+              </Link>
             </p>
           </div>
         </div>

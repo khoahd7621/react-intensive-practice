@@ -15,7 +15,7 @@ export default function FeaturedProduct() {
       </div>
       <div className="container">
         <div className="row">
-          {listProducts.map((product) => (
+          {listProducts.slice(0, 8).map((product) => (
             <ProductCard
               key={product.id}
               product={product}
