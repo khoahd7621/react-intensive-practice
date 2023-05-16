@@ -1,11 +1,57 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import AppRoutes from "@/routes/AppRoutes";
 
 export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [nearTop, setNearTop] = useState(true);
+
+  useEffect(() => {
+    const threshold = 0;
+    let lastScrollY = window.pageYOffset;
+    let ticking = false;
+
+    const updateScrollDir = () => {
+      const scrollY = window.pageYOffset;
+
+      if (Math.abs(scrollY - lastScrollY) < threshold) {
+        ticking = false;
+        return;
+      }
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+      ticking = false;
+
+      if (lastScrollY > 300) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      if (lastScrollY > 150) {
+        setNearTop(false);
+      } else {
+        setNearTop(true);
+      }
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollDir);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isScrolled, nearTop]);
+
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+      className={`navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light ${
+        isScrolled ? "scrolled" : ""
+      } ${nearTop ? "sleep" : "awake"}`}
       id="ftco-navbar"
     >
       <div className="container">
@@ -54,14 +100,6 @@ export default function Navbar() {
                 className="nav-link"
               >
                 About
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to={AppRoutes.blog}
-                className="nav-link"
-              >
-                Blog
               </Link>
             </li>
             <li className="nav-item">
