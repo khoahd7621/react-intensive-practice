@@ -14,6 +14,7 @@ export default function ShopPage() {
           </span>
         }
         name="Products"
+        title="Products"
       />
 
       <Products />

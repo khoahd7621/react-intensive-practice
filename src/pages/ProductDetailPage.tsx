@@ -30,6 +30,7 @@ export default function ProductDetailPage() {
           </>
         }
         name={product.name}
+        title={product.name}
       />
 
       <ProductDetails product={product} />
