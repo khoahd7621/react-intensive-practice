@@ -1,7 +1,7 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 
 import { StoreLayout } from "@/layouts";
-import { CartPage, HomePage, ProductDetailPage, ShopPage } from "@/pages";
+import { CartPage, CheckoutPage, HomePage, ProductDetailPage, ShopPage } from "@/pages";
 import AppRoutes from "./AppRoutes";
 
 const routes: RouteObject[] = [
@@ -24,6 +24,10 @@ const routes: RouteObject[] = [
       {
         path: AppRoutes.cart,
         element: <CartPage />,
+      },
+      {
+        path: AppRoutes.checkout,
+        element: <CheckoutPage />,
       },
     ],
   },

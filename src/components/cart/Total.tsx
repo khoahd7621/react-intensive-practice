@@ -1,3 +1,7 @@
+import { Link } from "react-router-dom";
+
+import AppRoutes from "@/routes/AppRoutes";
+
 export default function Total() {
   return (
     <>
@@ -22,12 +26,12 @@ export default function Total() {
         </p>
       </div>
       <p>
-        <a
-          href="#"
+        <Link
+          to={AppRoutes.checkout}
           className="btn btn-primary py-3 px-4"
         >
           Proceed to Checkout
-        </a>
+        </Link>
       </p>
     </>
   );
