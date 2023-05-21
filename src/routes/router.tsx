@@ -1,5 +1,7 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 
+import AuthContextProvider from "@/context/AuthContextProvider";
+import CartContextProvider from "@/context/CartContextProvider";
 import { StoreLayout } from "@/layouts";
 import {
   AboutPage,
@@ -8,13 +10,12 @@ import {
   ContactPage,
   HomePage,
   ProductDetailPage,
+  ProfilePage,
   ShopPage,
   SignInPage,
   SignUpPage,
 } from "@/pages";
 import AppRoutes from "./AppRoutes";
-import AuthContextProvider from "@/context/AuthContextProvider";
-import CartContextProvider from "@/context/CartContextProvider";
 
 const routes: RouteObject[] = [
   {
@@ -62,6 +63,10 @@ const routes: RouteObject[] = [
       {
         path: AppRoutes.signup,
         element: <SignUpPage />,
+      },
+      {
+        path: AppRoutes.profile,
+        element: <ProfilePage />,
       },
     ],
   },

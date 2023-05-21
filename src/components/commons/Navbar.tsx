@@ -10,7 +10,7 @@ export default function Navbar() {
   const [nearTop, setNearTop] = useState(true);
 
   const { isLoggedIn, user, logout } = useAuth();
-  const { items } = useCart();
+  const { items, clear } = useCart();
 
   useEffect(() => {
     const threshold = 0;
@@ -155,7 +155,10 @@ export default function Navbar() {
                   <a
                     style={{ cursor: "pointer" }}
                     className="dropdown-item"
-                    onClick={() => logout()}
+                    onClick={() => {
+                      logout();
+                      clear();
+                    }}
                   >
                     Sign out
                   </a>

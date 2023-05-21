@@ -6,6 +6,7 @@ export interface AuthContextType {
   isLoggedIn: boolean;
   login: (data: { username: string; password: string }) => void;
   logout: () => void;
+  updateProfile: (data: User) => void;
 }
 
 // Create the user context
@@ -38,11 +39,16 @@ const AuthContextProvider = ({ children }: React.PropsWithChildren) => {
     setUser(null);
   };
 
+  const updateProfile = (data: User) => {
+    setUser(data);
+  };
+
   const AuthContextValue: AuthContextType = {
     user,
     isLoggedIn,
     login,
     logout,
+    updateProfile,
   };
 
   return <AuthContext.Provider value={AuthContextValue}>{children}</AuthContext.Provider>;
