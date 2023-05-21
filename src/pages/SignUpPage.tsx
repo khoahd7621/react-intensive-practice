@@ -1,10 +1,45 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
+import useAuth from "@/hooks/useAuth";
+import { Register } from "@/models/Register";
 import AppRoutes from "@/routes/AppRoutes";
 
 import bg from "@/assets/images/bg_2.jpg";
 
 export default function SignUpPage() {
+  const [data, setData] = useState<Register>({
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+
+  const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (data.password !== data.confirmPassword) {
+      alert("Password and confirm password are not the same!");
+      return;
+    }
+    setData({
+      username: "",
+      password: "",
+      confirmPassword: "",
+    });
+    alert("Sign up successfully!");
+    navigate(AppRoutes.home);
+  };
+
+  if (isLoggedIn) {
+    return <Navigate to={AppRoutes.home} />;
+  }
+
   return (
     <section className="ftco-section sign-up">
       <div className="container">
@@ -26,33 +61,37 @@ export default function SignUpPage() {
                         href="#"
                         className="social-icon d-flex align-items-center justify-content-center"
                       >
-                        <span className="fa fa-facebook"></span>
+                        <span className="bi bi-facebook"></span>
                       </a>
                       <a
                         href="#"
-                        className="social-icon d-flex align-items-center justify-content-center"
+                        className="social-icon d-flex align-items-center justify-content-center ml-2"
                       >
-                        <span className="fa fa-twitter"></span>
+                        <span className="bi bi-twitter"></span>
                       </a>
                     </p>
                   </div>
                 </div>
                 <form
-                  action="#"
                   className="signin-form"
+                  onSubmit={handleSubmitForm}
                 >
                   <div className="form-group mb-3">
                     <label
                       className="label"
-                      htmlFor="name"
+                      htmlFor="username"
                     >
                       Username
                     </label>
                     <input
+                      id="username"
                       type="text"
+                      name="username"
                       className="form-control"
                       placeholder="Username"
                       required
+                      value={data.username}
+                      onChange={handleChangeInput}
                     />
                   </div>
                   <div className="form-group mb-3">
@@ -63,10 +102,14 @@ export default function SignUpPage() {
                       Password
                     </label>
                     <input
+                      id="password"
                       type="password"
+                      name="password"
                       className="form-control"
                       placeholder="Password"
                       required
+                      value={data.password}
+                      onChange={handleChangeInput}
                     />
                   </div>
                   <div className="form-group mb-3">
@@ -77,10 +120,14 @@ export default function SignUpPage() {
                       Confirm password
                     </label>
                     <input
+                      id="confirm-password"
                       type="password"
+                      name="confirmPassword"
                       className="form-control"
                       placeholder="Confirm password"
                       required
+                      value={data.confirmPassword}
+                      onChange={handleChangeInput}
                     />
                   </div>
                   <div className="form-group">

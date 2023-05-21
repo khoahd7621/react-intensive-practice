@@ -1,10 +1,33 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 
+import useAuth from "@/hooks/useAuth";
+import { Login } from "@/models/Login";
 import AppRoutes from "@/routes/AppRoutes";
 
 import bg1 from "@/assets/images/bg_1.jpg";
 
 export default function SignInPage() {
+  const [data, setData] = useState<Login>({
+    username: "",
+    password: "",
+  });
+  const { isLoggedIn, login } = useAuth();
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+
+  const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    login(data);
+  };
+
+  if (isLoggedIn) {
+    return <Navigate to={AppRoutes.home} />;
+  }
+
   return (
     <section className="ftco-section sign-in">
       <div className="container">
@@ -38,21 +61,25 @@ export default function SignInPage() {
                   </div>
                 </div>
                 <form
-                  action="#"
                   className="signin-form"
+                  onSubmit={handleSubmitForm}
                 >
                   <div className="form-group mb-3">
                     <label
                       className="label"
-                      htmlFor="name"
+                      htmlFor="username"
                     >
                       Username
                     </label>
                     <input
                       type="text"
+                      id="username"
+                      name="username"
                       className="form-control"
                       placeholder="Username"
                       required
+                      value={data.username}
+                      onChange={handleChangeInput}
                     />
                   </div>
                   <div className="form-group mb-3">
@@ -63,10 +90,14 @@ export default function SignInPage() {
                       Password
                     </label>
                     <input
+                      id="password"
                       type="password"
+                      name="password"
                       className="form-control"
                       placeholder="Password"
                       required
+                      value={data.password}
+                      onChange={handleChangeInput}
                     />
                   </div>
                   <div className="form-group">

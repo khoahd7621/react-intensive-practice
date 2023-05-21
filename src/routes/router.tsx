@@ -13,11 +13,16 @@ import {
   SignUpPage,
 } from "@/pages";
 import AppRoutes from "./AppRoutes";
+import AuthContextProvider from "@/context/AuthContextProvider";
 
 const routes: RouteObject[] = [
   {
     path: AppRoutes.home,
-    element: <StoreLayout />,
+    element: (
+      <AuthContextProvider>
+        <StoreLayout />
+      </AuthContextProvider>
+    ),
     children: [
       {
         path: AppRoutes.home,

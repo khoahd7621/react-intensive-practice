@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import AppRoutes from "@/routes/AppRoutes";
+import useAuth from "@/hooks/useAuth";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [nearTop, setNearTop] = useState(true);
+
+  const { isLoggedIn, user, logout } = useAuth();
 
   useEffect(() => {
     const threshold = 0;
@@ -110,47 +113,53 @@ export default function Navbar() {
                 Contact
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                to={AppRoutes.signin}
-                className="nav-link"
-              >
-                Sign in
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to={AppRoutes.signup}
-                className="nav-link"
-              >
-                Sign up
-              </Link>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Welcome, xxx
-              </a>
-              <div className="dropdown-menu">
-                <Link
-                  to={AppRoutes.profile}
-                  className="dropdown-item"
-                >
-                  Profile
-                </Link>
+            {!isLoggedIn ? (
+              <>
+                <li className="nav-item">
+                  <Link
+                    to={AppRoutes.signin}
+                    className="nav-link"
+                  >
+                    Sign in
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    to={AppRoutes.signup}
+                    className="nav-link"
+                  >
+                    Sign up
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item dropdown">
                 <a
-                  style={{ cursor: "pointer" }}
-                  className="dropdown-item"
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
-                  Sign out
+                  Welcome, {user != null && user.username}
                 </a>
-              </div>
-            </li>
+                <div className="dropdown-menu">
+                  <Link
+                    to={AppRoutes.profile}
+                    className="dropdown-item"
+                  >
+                    Profile
+                  </Link>
+                  <a
+                    style={{ cursor: "pointer" }}
+                    className="dropdown-item"
+                    onClick={() => logout()}
+                  >
+                    Sign out
+                  </a>
+                </div>
+              </li>
+            )}
             <li className="nav-item cta cta-colored">
               <Link
                 to={AppRoutes.cart}
