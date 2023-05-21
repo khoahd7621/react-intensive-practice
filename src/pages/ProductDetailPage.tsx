@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 
 import { HeroBread } from "@/components/commons";
@@ -11,6 +12,10 @@ export default function ProductDetailPage() {
   const { slug } = useParams();
 
   const product: Product | undefined = listProducts.find((product) => product.slug === slug);
+
+  useEffect(() => {
+    window.scrollTo(0, 400);
+  }, [product]);
 
   if (product === undefined) {
     return <Navigate to={AppRoutes.shop} />;

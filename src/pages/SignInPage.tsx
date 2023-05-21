@@ -49,13 +49,13 @@ export default function SignInPage() {
                         href="#"
                         className="social-icon d-flex align-items-center justify-content-center"
                       >
-                        <span className="fa fa-facebook"></span>
+                        <span className="bi bi-facebook"></span>
                       </a>
                       <a
                         href="#"
-                        className="social-icon d-flex align-items-center justify-content-center"
+                        className="social-icon d-flex align-items-center justify-content-center ml-2"
                       >
-                        <span className="fa fa-twitter"></span>
+                        <span className="bi bi-twitter"></span>
                       </a>
                     </p>
                   </div>

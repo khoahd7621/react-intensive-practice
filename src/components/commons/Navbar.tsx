@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import AppRoutes from "@/routes/AppRoutes";
 import useAuth from "@/hooks/useAuth";
+import useCart from "@/hooks/useCart";
+import AppRoutes from "@/routes/AppRoutes";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [nearTop, setNearTop] = useState(true);
 
   const { isLoggedIn, user, logout } = useAuth();
+  const { items } = useCart();
 
   useEffect(() => {
     const threshold = 0;
@@ -165,7 +167,7 @@ export default function Navbar() {
                 to={AppRoutes.cart}
                 className="nav-link"
               >
-                <span className="bi bi-cart4"></span>[0]
+                <span className="bi bi-cart4"></span>[{items.reduce((total, item) => total + item.quantity, 0)}]
               </Link>
             </li>
           </ul>

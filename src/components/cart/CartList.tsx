@@ -1,6 +1,8 @@
-import product3Image from "@/assets/images/product-3.jpg";
+import useCart from "@/hooks/useCart";
 
 export default function CartList() {
+  const { items, remove } = useCart();
+
   return (
     <div className="cart-list">
       <table className="table">
@@ -15,42 +17,49 @@ export default function CartList() {
           </tr>
         </thead>
         <tbody>
-          <tr className="text-center">
-            <td className="product-remove">
-              <a href="#">
-                <span className="bi bi-x"></span>
-              </a>
-            </td>
+          {items.map((item) => (
+            <tr className="text-center">
+              <td className="product-remove">
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    remove(item.product);
+                  }}
+                >
+                  <span className="bi bi-x"></span>
+                </a>
+              </td>
 
-            <td className="image-prod">
-              <div
-                className="img"
-                style={{ backgroundImage: `url(${product3Image})` }}
-              ></div>
-            </td>
+              <td className="image-prod">
+                <div
+                  className="img"
+                  style={{ backgroundImage: `url(${item.product.image})` }}
+                ></div>
+              </td>
 
-            <td className="product-name">
-              <h3>Bell Pepper</h3>
-              <p>Far far away, behind the word mountains, far from the countries</p>
-            </td>
+              <td className="product-name">
+                <h3>{item.product.name}</h3>
+                <p>Far far away, behind the word mountains, far from the countries</p>
+              </td>
 
-            <td className="price">$4.90</td>
+              <td className="price">${item.product.price}</td>
 
-            <td className="quantity">
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  name="quantity"
-                  className="quantity form-control input-number"
-                  value="1"
-                  min="1"
-                  max="100"
-                />
-              </div>
-            </td>
+              <td className="quantity">
+                <div className="input-group mb-3">
+                  <input
+                    type="text"
+                    name="quantity"
+                    className="quantity form-control input-number"
+                    value={item.quantity}
+                    readOnly
+                  />
+                </div>
+              </td>
 
-            <td className="total">$4.90</td>
-          </tr>
+              <td className="total">${item.product.price * item.quantity}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

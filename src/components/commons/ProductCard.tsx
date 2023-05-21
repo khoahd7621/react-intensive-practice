@@ -2,12 +2,15 @@ import { Link } from "react-router-dom";
 
 import { Product } from "@/models/Product";
 import AppRoutes from "@/routes/AppRoutes";
+import useCart from "@/hooks/useCart";
 
 type ProductProps = {
   product: Product;
 };
 
 export default function ProductCard({ product }: ProductProps) {
+  const { addToCart } = useCart();
+
   return (
     <div className="col-md-6 col-lg-3">
       <div className="product">
@@ -52,8 +55,9 @@ export default function ProductCard({ product }: ProductProps) {
                 </span>
               </Link>
               <a
-                href="#"
+                style={{ cursor: "pointer" }}
                 className="buy-now d-flex justify-content-center align-items-center mx-1"
+                onClick={() => addToCart(product, 1)}
               >
                 <span>
                   <i className="bi bi-cart4"></i>

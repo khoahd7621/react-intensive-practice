@@ -14,13 +14,16 @@ import {
 } from "@/pages";
 import AppRoutes from "./AppRoutes";
 import AuthContextProvider from "@/context/AuthContextProvider";
+import CartContextProvider from "@/context/CartContextProvider";
 
 const routes: RouteObject[] = [
   {
     path: AppRoutes.home,
     element: (
       <AuthContextProvider>
-        <StoreLayout />
+        <CartContextProvider>
+          <StoreLayout />
+        </CartContextProvider>
       </AuthContextProvider>
     ),
     children: [

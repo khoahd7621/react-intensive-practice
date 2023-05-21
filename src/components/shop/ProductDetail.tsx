@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
+
 import { listProducts } from "@/datas/ListProducts";
+import useCart from "@/hooks/useCart";
 import { Product } from "@/models/Product";
 import { ProductCard } from "../commons";
 
@@ -7,6 +10,14 @@ type ProductDetailsProps = {
 };
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
+  const [quantity, setQuantity] = useState(1);
+
+  const { addToCart } = useCart();
+
+  useEffect(() => {
+    setQuantity(1);
+  }, [product]);
+
   return (
     <>
       <section className="ftco-section">
@@ -115,6 +126,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                       className="quantity-left-minus btn"
                       data-type="minus"
                       data-field=""
+                      onClick={() => quantity > 1 && setQuantity(quantity - 1)}
                     >
                       <i className="bi bi-dash"></i>
                     </button>
@@ -124,9 +136,10 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     id="quantity"
                     name="quantity"
                     className="form-control input-number"
-                    value="1"
+                    value={quantity}
                     min="1"
-                    max="100"
+                    max="999"
+                    readOnly
                   />
                   <span className="input-group-btn ml-2">
                     <button
@@ -134,6 +147,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                       className="quantity-right-plus btn"
                       data-type="plus"
                       data-field=""
+                      onClick={() => quantity < 999 && setQuantity(quantity + 1)}
                     >
                       <i className="bi bi-plus"></i>
                     </button>
@@ -146,8 +160,13 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               </div>
               <p>
                 <a
-                  href="cart.html"
+                  style={{ cursor: "pointer" }}
+                  href="#"
                   className="btn btn-black py-3 px-5"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    addToCart(product, quantity);
+                  }}
                 >
                   Add to Cart
                 </a>

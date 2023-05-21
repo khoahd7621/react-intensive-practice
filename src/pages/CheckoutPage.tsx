@@ -2,15 +2,20 @@ import { Link } from "react-router-dom";
 
 import { BillingForm } from "@/components/checkout";
 import { HeroBread } from "@/components/commons";
+import useCart from "@/hooks/useCart";
 import AppRoutes from "@/routes/AppRoutes";
 
 export default function CheckoutPage() {
+  const { subTotal } = useCart();
+  const delivery = 0;
+  const discount = 0;
+
   return (
     <>
       <HeroBread
         AllBreadCrumbs={
           <span className="mr-2">
-            <Link to={AppRoutes.checkout}>Home</Link>
+            <Link to={AppRoutes.home}>Home</Link>
           </span>
         }
         name="Checkout"
@@ -30,7 +35,7 @@ export default function CheckoutPage() {
                     <h3 className="billing-heading mb-4">Cart Total</h3>
                     <p className="d-flex">
                       <span>Subtotal</span>
-                      <span>$20.60</span>
+                      <span>${subTotal}</span>
                     </p>
                     <p className="d-flex">
                       <span>Delivery</span>
@@ -43,7 +48,7 @@ export default function CheckoutPage() {
                     <hr />
                     <p className="d-flex total-price">
                       <span>Total</span>
-                      <span>$17.60</span>
+                      <span>${subTotal + delivery - discount}</span>
                     </p>
                   </div>
                 </div>
