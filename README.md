@@ -2,6 +2,8 @@
 
 A simple UI for E-Commerce Application with ReactJS, manage global states using React Context API.
 
+Live demo: [here](https://khoahd7621.github.io/react-intensive-practice)
+
 ### Some basic features:
 
 1. **User authentication**: The web app have a login system that allows users to create an account, login, and manage their profile.

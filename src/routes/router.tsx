@@ -16,7 +16,6 @@ import {
   SignUpPage,
 } from "@/pages";
 import AppRoutes from "./AppRoutes";
-import { basename } from "path";
 
 const routes: RouteObject[] = [
   {
