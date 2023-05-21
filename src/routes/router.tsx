@@ -1,7 +1,16 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 
 import { StoreLayout } from "@/layouts";
-import { AboutPage, CartPage, CheckoutPage, ContactPage, HomePage, ProductDetailPage, ShopPage } from "@/pages";
+import {
+  AboutPage,
+  CartPage,
+  CheckoutPage,
+  ContactPage,
+  HomePage,
+  ProductDetailPage,
+  ShopPage,
+  SignInPage,
+} from "@/pages";
 import AppRoutes from "./AppRoutes";
 
 const routes: RouteObject[] = [
@@ -36,6 +45,10 @@ const routes: RouteObject[] = [
       {
         path: AppRoutes.contact,
         element: <ContactPage />,
+      },
+      {
+        path: AppRoutes.signin,
+        element: <SignInPage />,
       },
     ],
   },
