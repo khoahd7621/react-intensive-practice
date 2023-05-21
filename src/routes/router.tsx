@@ -10,6 +10,7 @@ import {
   ProductDetailPage,
   ShopPage,
   SignInPage,
+  SignUpPage,
 } from "@/pages";
 import AppRoutes from "./AppRoutes";
 
@@ -49,6 +50,10 @@ const routes: RouteObject[] = [
       {
         path: AppRoutes.signin,
         element: <SignInPage />,
+      },
+      {
+        path: AppRoutes.signup,
+        element: <SignUpPage />,
       },
     ],
   },

@@ -6,5 +6,16 @@ import CheckoutPage from "./CheckoutPage";
 import AboutPage from "./AboutPage";
 import ContactPage from "./ContactPage";
 import SignInPage from "./SignInPage";
+import SignUpPage from "./SignUpPage";
 
-export { HomePage, ShopPage, ProductDetailPage, CartPage, CheckoutPage, AboutPage, ContactPage, SignInPage };
+export {
+  HomePage,
+  ShopPage,
+  ProductDetailPage,
+  CartPage,
+  CheckoutPage,
+  AboutPage,
+  ContactPage,
+  SignInPage,
+  SignUpPage,
+};
