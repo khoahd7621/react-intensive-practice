@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 import { Product } from "@/models/Product";
 
@@ -14,6 +14,7 @@ export interface CartContextType {
   increase: (product: Product) => void;
   decrease: (product: Product) => void;
   remove: (product: Product) => void;
+  clear: () => void;
 }
 
 export const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -72,6 +73,10 @@ const CartContextProvider = ({ children }: React.PropsWithChildren) => {
     setItems(newItems);
   };
 
+  const clear = () => {
+    setItems([]);
+  };
+
   const CartContextValue: CartContextType = {
     subTotal,
     items,
@@ -79,6 +84,7 @@ const CartContextProvider = ({ children }: React.PropsWithChildren) => {
     increase,
     decrease,
     remove,
+    clear,
   };
 
   return <CartContext.Provider value={CartContextValue}>{children}</CartContext.Provider>;

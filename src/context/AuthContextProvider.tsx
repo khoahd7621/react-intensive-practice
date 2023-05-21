@@ -21,10 +21,15 @@ const AuthContextProvider = ({ children }: React.PropsWithChildren) => {
     setUser({
       id: 0,
       username: data.username,
-      fullName: "John Doe",
+      firstName: "John",
+      lastName: "Doe",
       email: "johndoe@example.com",
       phone: "0123456789",
-      address: "123 Street, City, Country",
+      address: "123 Street",
+      optional: "Apartment 123",
+      city: "City",
+      country: "Japan",
+      zip: "12345",
     });
   };
 
