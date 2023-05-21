@@ -5,6 +5,7 @@ import inject from "@rollup/plugin-inject";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/react-intensive-practice/",
   plugins: [
     react(),
     inject({
@@ -13,6 +14,6 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
+    alias: [{ find: "@", replacement: path.resolve(__dirname, "./src") }],
   },
 });

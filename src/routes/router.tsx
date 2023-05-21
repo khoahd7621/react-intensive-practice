@@ -16,6 +16,7 @@ import {
   SignUpPage,
 } from "@/pages";
 import AppRoutes from "./AppRoutes";
+import { basename } from "path";
 
 const routes: RouteObject[] = [
   {
@@ -72,6 +73,8 @@ const routes: RouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter(routes);
+const router = createBrowserRouter(routes, {
+  basename: "/react-intensive-practice",
+});
 
 export default router;
